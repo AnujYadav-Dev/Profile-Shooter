@@ -1,0 +1,57 @@
+name: Update Profile Space Shooter
+
+on:
+  schedule:
+    # Runs daily at midnight UTC
+    # Adjust the cron expression to your preferred time
+    # Format: minute hour day month weekday
+    - cron: '0 0 * * *'
+  
+  # Allows manual trigger from Actions tab
+  workflow_dispatch:
+
+jobs:
+  update-profile:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Step 1: Checkout this repository (contains the Python code)
+      - name: Checkout this repo
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # Step 4: Generate the game GIF
+      - name: Generate game GIF
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: python generate_gif.py
+
+      # Step 5: Clone profile repo, add GIF, and push
+      - name: Update profile repository
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          # Clone your profile repository
+          git clone https://x-access-token:${GH_PAT}@github.com/AnujYadav-Dev/AnujYadav-Dev.git profile-repo
+          
+          # Copy the generated GIF to profile repo
+          cp game.gif profile-repo/
+          
+          # Configure git
+          cd profile-repo
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          
+          # Commit and push (only if there are changes)
+          git add game.gif
+          git diff --staged --quiet || git commit -m "🚀 Update space shooter game GIF"
+          git push
