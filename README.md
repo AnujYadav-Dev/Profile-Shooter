@@ -2,7 +2,7 @@
 
 A private repository that automatically generates and updates an animated space shooter GIF on your GitHub profile. Your GitHub contributions become enemies in an epic space battle!
 
-![Space Shooter Demo](https://raw.githubusercontent.com/czl9707/gh-space-shooter/main/example.gif)
+![Space Shooter Demo](./example.gif)
 
 ## How It Works
 
@@ -71,7 +71,9 @@ You need a PAT to allow this repo to push to your profile repository.
 In your profile repository ([AnujYadav-Dev/AnujYadav-Dev](https://github.com/AnujYadav-Dev/AnujYadav-Dev)), edit `README.md` and add:
 
 ```markdown
-![Space Shooter](game.gif)
+<a href="https://github.com/AnujYadav-Dev/">
+  <img src="game.gif" alt="Space Shooter" width="100%">
+</a>
 ```
 
 That's it! Your profile now shows an animated space shooter game based on your contributions! 🎮
@@ -181,16 +183,15 @@ gh-profile-shooter/
 │   └── workflows/
 │       └── update-profile.yml    # GitHub Action workflow
 ├── src/
-│   └── gh_space_shooter/         # Game engine code
-│       ├── cli.py                # CLI (not used, but kept for reference)
-│       ├── github_client.py      # GitHub API client
-│       ├── constants.py          # Game constants
-│       └── game/
-│           ├── animator.py       # GIF generation
-│           ├── renderer.py       # Frame rendering
-│           ├── game_state.py     # Game state management
-│           ├── drawables/        # Ship, enemies, bullets, etc.
-│           └── strategies/       # Attack patterns
+│   ├── cli.py                # CLI (not used, but kept for reference)
+│   ├── github_client.py      # GitHub API client
+│   ├── constants.py          # Game constants
+│   └── game/
+│       ├── animator.py       # GIF generation
+│       ├── renderer.py       # Frame rendering
+│       ├── game_state.py     # Game state management
+│       ├── drawables/        # Ship, enemies, bullets, etc.
+│       └── strategies/       # Attack patterns
 ├── generate_gif.py               # Main entry point
 ├── requirements.txt              # Python dependencies
 └── README.md                     # This file
