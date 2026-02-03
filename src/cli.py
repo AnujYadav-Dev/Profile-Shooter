@@ -79,7 +79,7 @@ def main(
 
     Examples:
       # Fetch from GitHub and save
-      gh-space-shooter czl9707 --raw-output data.json
+      gh-space-shooter AnujYadav-Dev --raw-output data.json
 
       # Load from saved file
       gh-space-shooter --raw-input data.json

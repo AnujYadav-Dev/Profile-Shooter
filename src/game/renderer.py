@@ -6,7 +6,7 @@ from src.constants import NUM_WEEKS, SHIP_POSITION_Y
 from src.game.game_state import GameState
 from src.game.render_context import RenderContext
 
-WATERMARK_TEXT = "by czl9707/gh-space-shooter"
+WATERMARK_TEXT = "by AnujYadav-Dev/Profile-Shooter"
 
 
 class Renderer:
