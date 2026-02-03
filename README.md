@@ -1,4 +1,4 @@
-# gh-profile-shooter 🚀
+# profile-shooter 🚀
 
 A private repository that automatically generates and updates an animated space shooter GIF on your GitHub profile. Your GitHub contributions become enemies in an epic space battle!
 
@@ -178,7 +178,7 @@ python generate_gif.py
 ## 📁 Project Structure
 
 ```
-gh-profile-shooter/
+Profile-Shooter/
 ├── .github/
 │   └── workflows/
 │       └── update-profile.yml    # GitHub Action workflow
