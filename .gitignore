@@ -1,6 +1,5 @@
 # Generated files
 game.gif
-*.gif
 
 # Python
 __pycache__/

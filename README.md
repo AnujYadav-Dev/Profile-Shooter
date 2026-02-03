@@ -1,12 +1,12 @@
-# profile-shooter 🚀
+# Profile Shooter 🚀
 
 A private repository that automatically generates and updates an animated space shooter GIF on your GitHub profile. Your GitHub contributions become enemies in an epic space battle!
 
-![Space Shooter Demo](./example.gif)
+<img src="./example.gif" alt="Space Shooter" width="100%">
 
 ## How It Works
 
-1. **Daily at midnight UTC**, a GitHub Action runs automatically
+1. **Corn Job**, run at set time automatically
 2. It fetches your GitHub contribution data
 3. Generates an animated GIF where your contributions become enemies
 4. Pushes the GIF to your profile repository (AnujYadav-Dev/AnujYadav-Dev)
