@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING
 from PIL import ImageDraw
 
 if TYPE_CHECKING:
-    from .render_context import RenderContext
+    from src.game.render_context import RenderContext
 
 
 class Drawable(ABC):

@@ -4,12 +4,12 @@ from typing import TYPE_CHECKING, List
 
 from PIL import ImageDraw
 
-from ..constants import SHIP_SHOOT_COOLDOWN
-from ..github_client import ContributionData
-from .drawables import Bullet, Drawable, Enemy, Explosion, Ship, Starfield
+from src.constants import SHIP_SHOOT_COOLDOWN
+from src.github_client import ContributionData
+from src.game.drawables import Bullet, Drawable, Enemy, Explosion, Ship, Starfield
 
 if TYPE_CHECKING:
-    from .render_context import RenderContext
+    from src.game.render_context import RenderContext
 
 
 class GameState(Drawable):

@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING, Literal
 
 from PIL import ImageDraw
 
-from ...constants import (
+from src.constants import (
     EXPLOSION_DURATION_LARGE,
     EXPLOSION_DURATION_SMALL,
     EXPLOSION_MAX_RADIUS_LARGE,
@@ -14,11 +14,11 @@ from ...constants import (
     EXPLOSION_PARTICLE_COUNT_LARGE,
     EXPLOSION_PARTICLE_COUNT_SMALL,
 )
-from .drawable import Drawable
+from src.game.drawables.drawable import Drawable
 
 if TYPE_CHECKING:
-    from ..game_state import GameState
-    from ..render_context import RenderContext
+    from src.game.game_state import GameState
+    from src.game.render_context import RenderContext
 
 
 class Explosion(Drawable):

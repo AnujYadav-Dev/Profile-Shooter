@@ -5,11 +5,11 @@ from typing import Iterator
 
 from PIL import Image
 
-from ..github_client import ContributionData
-from .game_state import GameState
-from .renderer import Renderer
-from .strategies.base_strategy import BaseStrategy
-from .render_context import RenderContext
+from src.github_client import ContributionData
+from src.game.game_state import GameState
+from src.game.renderer import Renderer
+from src.game.strategies.base_strategy import BaseStrategy
+from src.game.render_context import RenderContext
 
 
 class Animator:

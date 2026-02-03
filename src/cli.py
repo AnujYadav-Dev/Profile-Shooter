@@ -8,11 +8,11 @@ import typer
 from dotenv import load_dotenv
 from rich.console import Console
 
-from .constants import DEFAULT_FPS
-from .game.strategies.base_strategy import BaseStrategy
-from .console_printer import ContributionConsolePrinter
-from .game import Animator, ColumnStrategy, RandomStrategy, RowStrategy
-from .github_client import ContributionData, GitHubAPIError, GitHubClient
+from src.constants import DEFAULT_FPS
+from src.game.strategies.base_strategy import BaseStrategy
+from src.console_printer import ContributionConsolePrinter
+from src.game import Animator, ColumnStrategy, RandomStrategy, RowStrategy
+from src.github_client import ContributionData, GitHubAPIError, GitHubClient
 
 # Load environment variables from .env file
 load_dotenv()

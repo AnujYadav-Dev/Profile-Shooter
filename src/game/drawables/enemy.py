@@ -4,12 +4,12 @@ from typing import TYPE_CHECKING
 
 from PIL import ImageDraw
 
-from .drawable import Drawable
-from .explosion import Explosion
+from src.game.drawables.drawable import Drawable
+from src.game.drawables.explosion import Explosion
 
 if TYPE_CHECKING:
-    from ..game_state import GameState
-    from ..render_context import RenderContext
+    from src.game.game_state import GameState
+    from src.game.render_context import RenderContext
 
 
 class Enemy(Drawable):

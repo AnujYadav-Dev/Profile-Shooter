@@ -6,7 +6,7 @@ from typing import TypedDict
 import httpx
 from dotenv import load_dotenv
 
-from .constants import NUM_WEEKS
+from src.constants import NUM_WEEKS
 
 # Load environment variables from .env file
 load_dotenv()

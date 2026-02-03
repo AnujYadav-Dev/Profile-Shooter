@@ -5,11 +5,11 @@ from typing import TYPE_CHECKING, TypedDict
 
 from PIL import ImageDraw
 
-from ...constants import NUM_WEEKS, SHIP_POSITION_Y, STAR_SPEED_MIN, STAR_SPEED_MAX
-from .drawable import Drawable
+from src.constants import NUM_WEEKS, SHIP_POSITION_Y, STAR_SPEED_MIN, STAR_SPEED_MAX
+from src.game.drawables.drawable import Drawable
 
 if TYPE_CHECKING:
-    from ..render_context import RenderContext
+    from src.game.render_context import RenderContext
 
 class Star(TypedDict):
     x: float

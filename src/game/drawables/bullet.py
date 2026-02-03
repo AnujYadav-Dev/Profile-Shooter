@@ -4,14 +4,14 @@ from typing import TYPE_CHECKING
 
 from PIL import ImageDraw
 
-from ...constants import BULLET_SPEED, BULLET_TRAILING_LENGTH, BULLET_TRAIL_SPACING, SHIP_POSITION_Y
-from .drawable import Drawable
-from .explosion import Explosion
+from src.constants import BULLET_SPEED, BULLET_TRAILING_LENGTH, BULLET_TRAIL_SPACING, SHIP_POSITION_Y
+from src.game.drawables.drawable import Drawable
+from src.game.drawables.explosion import Explosion
 
 if TYPE_CHECKING:
-    from .enemy import Enemy
-    from ..game_state import GameState
-    from ..render_context import RenderContext
+    from src.game.drawables.enemy import Enemy
+    from src.game.game_state import GameState
+    from src.game.render_context import RenderContext
 
 
 class Bullet(Drawable):

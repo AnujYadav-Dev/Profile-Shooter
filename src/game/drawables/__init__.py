@@ -1,11 +1,11 @@
 """Drawable game objects."""
 
-from .bullet import Bullet
-from .drawable import Drawable
-from .enemy import Enemy
-from .explosion import Explosion
-from .ship import Ship
-from .starfield import Starfield
+from src.game.drawables.bullet import Bullet
+from src.game.drawables.drawable import Drawable
+from src.game.drawables.enemy import Enemy
+from src.game.drawables.explosion import Explosion
+from src.game.drawables.ship import Ship
+from src.game.drawables.starfield import Starfield
 
 __all__ = [
     "Bullet",

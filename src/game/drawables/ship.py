@@ -4,12 +4,12 @@ from typing import TYPE_CHECKING
 
 from PIL import ImageDraw
 
-from ...constants import SHIP_POSITION_Y, SHIP_SPEED
-from .drawable import Drawable
+from src.constants import SHIP_POSITION_Y, SHIP_SPEED
+from src.game.drawables.drawable import Drawable
 
 if TYPE_CHECKING:
-    from ..game_state import GameState
-    from ..render_context import RenderContext
+    from src.game.game_state import GameState
+    from src.game.render_context import RenderContext
 
 
 class Ship(Drawable):

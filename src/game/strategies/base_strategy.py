@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING, Iterator
 
 if TYPE_CHECKING:
-    from ..game_state import GameState
+    from src.game.game_state import GameState
 
 
 class Action:

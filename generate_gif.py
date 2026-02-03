@@ -11,13 +11,14 @@ Configuration:
 import os
 import sys
 
-# Add src to path for local imports
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
+# Get the absolute path to the project root (where src/ folder is located)
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
-# from gh_space_shooter.github_client import GitHubClient
-# from gh_space_shooter.game import Animator, RandomStrategy, ColumnStrategy, RowStrategy
-from github_client import GitHubClient
-from game import Animator, RandomStrategy, ColumnStrategy, RowStrategy
+# Add project root to path so Python can find 'src' as a package
+sys.path.insert(0, PROJECT_ROOT)
+
+from src.github_client import GitHubClient
+from src.game import Animator, RandomStrategy, ColumnStrategy, RowStrategy
 
 # ============================================================
 # CONFIGURATION - Edit these values to customize your GIF!

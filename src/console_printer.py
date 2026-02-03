@@ -3,7 +3,7 @@
 from rich.console import Console
 from rich.text import Text
 
-from .github_client import ContributionData
+from src.github_client import ContributionData
 
 console = Console()
 

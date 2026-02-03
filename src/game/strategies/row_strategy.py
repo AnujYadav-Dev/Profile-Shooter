@@ -2,11 +2,11 @@
 
 from typing import TYPE_CHECKING, Iterator
 
-from ...constants import NUM_DAYS
-from .base_strategy import Action, BaseStrategy
+from src.constants import NUM_DAYS
+from src.game.strategies.base_strategy import Action, BaseStrategy
 
 if TYPE_CHECKING:
-    from ..game_state import GameState
+    from src.game.game_state import GameState
 
 
 class RowStrategy(BaseStrategy):

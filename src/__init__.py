@@ -1,6 +1,6 @@
 """GitHub contribution graph gamification tool."""
 
-from .github_client import (
+from src.github_client import (
     ContributionData,
     ContributionDay,
     ContributionWeek,
@@ -17,3 +17,4 @@ __all__ = [
     "ContributionDay",
     "ContributionWeek",
 ]
+
