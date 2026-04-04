@@ -27,14 +27,14 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # Step 4: Generate the game GIF
-      - name: Generate game GIF
+      # Step 4: Generate the game WebP
+      - name: Generate game WebP
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
-        run: python generate_gif.py
+        run: python generate_webp.py
 
-      # Step 5: Clone profile repo, update ONLY the GIF file, and push
-      # NOTE: This does NOT modify your README.md - only the game.gif file!
+      # Step 5: Clone profile repo, update ONLY the WebP file, and push
+      # NOTE: This does NOT modify your README.md - only the game.webp file!
       # Your existing README content is fully preserved.
       - name: Update profile repository
         env:
@@ -43,16 +43,16 @@ jobs:
           # Clone your profile repository
           git clone https://x-access-token:${GH_PAT}@github.com/AnujYadav-Dev/AnujYadav-Dev.git profile-repo
           
-          # Copy the generated GIF to profile repo (replaces old GIF only)
-          cp game.gif profile-repo/
+          # Copy the generated WebP to profile repo (replaces old file only)
+          cp game.webp profile-repo/
           
           # Configure git
           cd profile-repo
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
           
-          # Commit and push (only if the GIF has changed)
-          git add game.gif
-          git diff --staged --quiet || git commit -m "🚀 Update space shooter game GIF"
+          # Commit and push (only if the WebP has changed)
+          git add game.webp
+          git diff --staged --quiet || git commit -m "🚀 Update space shooter game WebP"
           git push
 

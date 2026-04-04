@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Generate GitHub Space Shooter GIF for profile.
+"""Generate GitHub Space Shooter WebP for profile.
 
 This script fetches your GitHub contribution data and generates
-an animated space shooter GIF that can be displayed on your profile.
+an animated space shooter WebP that can be displayed on your profile.
 
 Configuration:
     Edit the variables below to customize the output.
@@ -21,11 +21,11 @@ from src.github_client import GitHubClient
 from src.game import Animator, RandomStrategy, ColumnStrategy, RowStrategy
 
 # ============================================================
-# CONFIGURATION - Edit these values to customize your GIF!
+# CONFIGURATION - Edit these values to customize your animation!
 # ============================================================
 
 USERNAME = "AnujYadav-Dev"       # Your GitHub username
-OUTPUT_FILE = "game.gif"         # Output filename
+OUTPUT_FILE = "game.webp"        # Output filename
 STRATEGY = "random"              # Options: "random", "column", "row"
 FPS = 40                         # Animation speed (20-50 recommended)
 MAX_FRAMES = None                # Set to a number to limit frames (e.g., 500)
@@ -65,7 +65,7 @@ def main():
         print("=" * 60)
         sys.exit(1)
     
-    print(f"🎮 GitHub Space Shooter GIF Generator")
+    print(f"🎮 GitHub Space Shooter WebP Generator")
     print(f"=" * 40)
     print(f"Username: {USERNAME}")
     print(f"Strategy: {STRATEGY}")
@@ -87,24 +87,24 @@ def main():
     # Get strategy
     strategy = get_strategy(STRATEGY)
     
-    # Generate GIF
-    print(f"\n🎬 Generating GIF animation...")
+    # Generate animation
+    print(f"\n🎬 Generating WebP animation...")
     print(f"   This may take a minute...")
     
     try:
         animator = Animator(data, strategy, fps=FPS)
-        gif_buffer = animator.generate_gif(maxFrame=MAX_FRAMES)
+        webp_buffer = animator.generate_webp(maxFrame=MAX_FRAMES)
         
         with open(OUTPUT_FILE, "wb") as f:
-            f.write(gif_buffer.getvalue())
+            f.write(webp_buffer.getvalue())
         
         file_size = os.path.getsize(OUTPUT_FILE) / (1024 * 1024)  # MB
         print(f"\n✅ Success!")
-        print(f"   GIF saved to: {OUTPUT_FILE}")
+        print(f"   WebP saved to: {OUTPUT_FILE}")
         print(f"   File size: {file_size:.2f} MB")
         
     except Exception as e:
-        print(f"❌ Error generating GIF: {e}")
+        print(f"❌ Error generating WebP: {e}")
         sys.exit(1)
 
 

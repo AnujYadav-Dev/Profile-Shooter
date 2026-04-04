@@ -1,4 +1,4 @@
-"""Animator for generating GIF animations from game strategies."""
+"""Animator for generating WebP animations from game strategies."""
 
 from io import BytesIO
 from typing import Iterator
@@ -13,7 +13,7 @@ from src.game.render_context import RenderContext
 
 
 class Animator:
-    """Generates animated GIFs from game strategies."""
+    """Generates animated WebPs from game strategies."""
 
     def __init__(
         self,
@@ -29,7 +29,7 @@ class Animator:
             contribution_data: The GitHub contribution data
             strategy: The strategy to use for clearing enemies
             fps: Frames per second for the animation
-            watermark: Whether to add watermark to the GIF
+            watermark: Whether to add watermark to the WebP
         """
         self.contribution_data = contribution_data
         self.strategy = strategy
@@ -40,12 +40,12 @@ class Animator:
         # Used to scale all speeds (cells/second) to per-frame movement
         self.delta_time = 1.0 / fps
 
-    def generate_gif(self, maxFrame: int | None) -> BytesIO:
+    def generate_webp(self, maxFrame: int | None) -> BytesIO:
         """
-        Generate animated GIF and save to file.
+        Generate animated WebP and save to file.
 
         Args:
-            output_path: Path where GIF should be saved
+            output_path: Path where WebP should be saved
         """
         # Initialize game state
         game_state = GameState(self.contribution_data)
@@ -57,19 +57,20 @@ class Animator:
             if maxFrame is not None and len(frames) >= maxFrame:
                 break
 
-        gif_buffer = BytesIO()
+        webp_buffer = BytesIO()
         if frames:
             frames[0].save(
-                gif_buffer,
-                format="gif",
+                webp_buffer,
+                format="webp",
                 save_all=True,
                 append_images=frames[1:],
                 duration=self.frame_duration,
                 loop=0,  # Loop forever
-                optimize=False,
+                lossless=True,
+                method=6,
             )
         
-        return gif_buffer
+        return webp_buffer
 
     def _generate_frames(
         self, game_state: GameState, renderer: Renderer

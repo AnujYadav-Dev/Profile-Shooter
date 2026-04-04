@@ -47,7 +47,7 @@ def main(
         "--output",
         "-out",
         "-o",
-        help="Generate animated GIF visualization",
+        help="Generate animated WebP visualization",
     ),
     strategy: str = typer.Option(
         "random",
@@ -68,7 +68,7 @@ def main(
     watermark: bool = typer.Option(
         False,
         "--watermark",
-        help="Add watermark to the GIF",
+        help="Add watermark to the WebP",
     ),
 ) -> None:
     """
@@ -88,7 +88,7 @@ def main(
         if not username:
             raise CLIError("Username is required when not using --raw-input")
         if not out:
-            out = f"{username}-gh-space-shooter.gif"
+            out = f"{username}-gh-space-shooter.webp"
         # Load data from file or GitHub
         if raw_input:
             data = _load_data_from_file(raw_input)
@@ -104,8 +104,8 @@ def main(
         if raw_output:
             _save_data_to_file(data, raw_output)
 
-        # Generate GIF if requested
-        _generate_gif(data, out, strategy, fps, watermark, maxFrame)
+        # Generate WebP if requested
+        _generate_webp(data, out, strategy, fps, watermark, maxFrame)
 
     except CLIError as e:
         err_console.print(f"[bold red]Error:[/bold red] {e}")
@@ -161,22 +161,22 @@ def _save_data_to_file(data: ContributionData, file_path: str) -> None:
         raise CLIError(f"Failed to save file '{file_path}': {e}")
 
 
-def _generate_gif(
-    data: ContributionData, 
-    file_path: str, 
-    strategy_name: str, 
-    fps: int, 
-    watermark: bool, 
-    maxFrame: int | None
+def _generate_webp(
+    data: ContributionData,
+    file_path: str,
+    strategy_name: str,
+    fps: int,
+    watermark: bool,
+    maxFrame: int | None,
 ) -> None:
-    """Generate animated GIF visualization."""
-    # GIF format limitation: delays below 20ms (>50 FPS) are clamped by most browsers
+    """Generate animated WebP visualization."""
+    # WebP format limitation: delays below 20ms (>50 FPS) are clamped by most browsers
     if fps > 50:
         console.print(
-            f"[yellow]Warning:[/yellow] FPS > 50 may not display correctly in browsers "
-            f"(GIF delay will be {1000 // fps}ms, but browsers clamp delays < 20ms to ~100ms)"
+            f"[yellow]⚠️ Warning: FPS {fps} is very high.[/yellow]\n"
+            f"(WebP delay will be {1000 // fps}ms, but browsers clamp delays < 20ms to ~100ms)"
         )
-    console.print("\n[bold blue]Generating GIF animation...[/bold blue]")
+    console.print("\n[bold blue]Generating WebP animation...[/bold blue]")
 
     if strategy_name == "column":
         strategy: BaseStrategy = ColumnStrategy()
@@ -189,17 +189,17 @@ def _generate_gif(
             f"Unknown strategy '{strategy_name}'. Available: column, row, random"
         )
 
-    # Create animator and generate GIF
+    # Create animator and generate WebP
     try:
         animator = Animator(data, strategy, fps=fps, watermark=watermark)
-        buffer = animator.generate_gif(maxFrame=maxFrame)
-        console.print("[bold blue]Saving GIF animation...[/bold blue]")
+        buffer = animator.generate_webp(maxFrame=maxFrame)
+        console.print("[bold blue]Saving WebP animation...[/bold blue]")
+        
         with open(file_path, "wb") as f:
             f.write(buffer.getvalue())
-
-        console.print(f"[green]✓[/green] GIF saved to {file_path}")
+        console.print(f"[green]✓[/green] WebP saved to {file_path}")
     except Exception as e:
-        raise CLIError(f"Failed to generate GIF: {e}")
+        raise CLIError(f"Failed to generate WebP: {e}")
 
 
 app = typer.Typer()
