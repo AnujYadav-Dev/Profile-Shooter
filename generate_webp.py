@@ -21,14 +21,36 @@ from src.github_client import GitHubClient
 from src.game import Animator, RandomStrategy, ColumnStrategy, RowStrategy
 
 # ============================================================
-# CONFIGURATION - Edit these values to customize your animation!
+# CONFIGURATION - Pulled dynamically from environment variables
 # ============================================================
 
-USERNAME = "AnujYadav-Dev"       # Your GitHub username
-OUTPUT_FILE = "game.webp"        # Output filename
-STRATEGY = "random"              # Options: "random", "column", "row"
-FPS = 40                         # Animation speed (20-50 recommended)
-MAX_FRAMES = None                # Set to a number to limit frames (e.g., 500)
+USERNAME = os.getenv("GITHUB_OWNER")
+if not USERNAME:
+    print("=" * 60)
+    print("ERROR: GITHUB_OWNER environment variable not set!")
+    print("=" * 60)
+    sys.exit(1)
+
+OUTPUT_FILE = os.getenv("OUTPUT_FILE", "game.webp")
+STRATEGY = os.getenv("ANIMATION_STRATEGY", "random")
+
+# Parse FPS
+try:
+    FPS = int(os.getenv("ANIMATION_FPS", "40"))
+except ValueError:
+    print("Warning: ANIMATION_FPS is not a valid integer. Defaulting to 40.")
+    FPS = 40
+
+# Parse MAX_FRAMES
+env_max_frames = os.getenv("MAX_FRAMES")
+if env_max_frames and env_max_frames.strip():
+    try:
+        MAX_FRAMES = int(env_max_frames)
+    except ValueError:
+        print("Warning: MAX_FRAMES is not a valid integer. Ignoring.")
+        MAX_FRAMES = None
+else:
+    MAX_FRAMES = None
 
 # ============================================================
 

@@ -31,6 +31,11 @@ jobs:
       - name: Generate game WebP
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
+          GITHUB_OWNER: ${{ github.repository_owner }}
+          OUTPUT_FILE: ${{ vars.OUTPUT_FILE || 'game.webp' }}
+          ANIMATION_STRATEGY: ${{ vars.ANIMATION_STRATEGY || 'random' }}
+          ANIMATION_FPS: ${{ vars.ANIMATION_FPS || '40' }}
+          MAX_FRAMES: ${{ vars.MAX_FRAMES || '' }}
         run: python generate_webp.py
 
       # Step 5: Clone profile repo, update ONLY the WebP file, and push
@@ -39,17 +44,18 @@ jobs:
       - name: Update profile repository
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
+          PROFILE_REPO: ${{ format('{0}/{0}', github.repository_owner) }}
         run: |
           # Clone your profile repository
-          git clone https://x-access-token:${GH_PAT}@github.com/AnujYadav-Dev/AnujYadav-Dev.git profile-repo
+          git clone https://x-access-token:${GH_PAT}@github.com/${PROFILE_REPO}.git profile-repo
           
           # Copy the generated WebP to profile repo (replaces old file only)
           cp game.webp profile-repo/
           
           # Configure git
           cd profile-repo
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git config user.name "github-actions[bot]"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git config user.name "${{ github.actor }}"
           
           # Commit and push (only if the WebP has changed)
           git add game.webp

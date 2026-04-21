@@ -9,7 +9,7 @@ A private repository that automatically generates and updates an animated space 
 1. **Corn Job**, run at set time automatically
 2. It fetches your GitHub contribution data
 3. Generates an animated WebP where your contributions become enemies
-4. Pushes the animation to your profile repository (AnujYadav-Dev/AnujYadav-Dev)
+4. Pushes the animation to your profile repository (`AnujYadav-Dev/AnujYadav-Dev`)
 
 Your profile README displays the ever-updating game!
 
@@ -68,7 +68,7 @@ You need a PAT to allow this repo to push to your profile repository.
 
 ### Step 4: Add Animation to Your Profile
 
-In your profile repository ([AnujYadav-Dev/AnujYadav-Dev](https://github.com/AnujYadav-Dev/AnujYadav-Dev)), edit `README.md` and add:
+In your profile repository (`AnujYadav-Dev/AnujYadav-Dev`), edit `README.md` and add:
 
 ```markdown
 <a href="https://github.com/AnujYadav-Dev/">
@@ -82,19 +82,19 @@ That's it! Your profile now shows an animated space shooter game based on your c
 
 ## ⚙️ Customization
 
-Edit `generate_webp.py` to customize:
+Animations can be customized by adding **Repository Variables** (not secrets):
 
-```python
-# ============================================================
-# CONFIGURATION - Edit these values to customize your animation!
-# ============================================================
+1. Go to **Settings** → **Secrets and variables** → **Actions** → **Variables** tab
+2. Click **"New repository variable"**
 
-USERNAME = "AnujYadav-Dev"       # Your GitHub username
-OUTPUT_FILE = "game.webp"        # Output filename
-STRATEGY = "random"              # Options: "random", "column", "row"
-FPS = 40                         # Animation speed (20-50 recommended)
-MAX_FRAMES = None                # Set to a number to limit frames (e.g., 500)
-```
+You can add any of the following variables to customize your animation:
+
+| Variable Name | Default | Description |
+|---------------|---------|-------------|
+| `ANIMATION_STRATEGY` | `random` | Attack pattern (`random`, `column`, `row`) |
+| `ANIMATION_FPS` | `40` | Animation speed (20-50 recommended) |
+| `MAX_FRAMES` | (none) | Limit the number of frames generated |
+| `OUTPUT_FILE` | `game.webp` | Output filename |
 
 ### Strategy Options
 
@@ -122,8 +122,9 @@ You can test the WebP generation on your local machine:
 
 ### Windows
 ```powershell
-# Set your token
+# Set your token and username
 $env:GH_TOKEN = "your_token_here"
+$env:GITHUB_OWNER = "your_username_here"
 
 # Install dependencies
 pip install -r requirements.txt
@@ -134,8 +135,9 @@ python generate_webp.py
 
 ### Linux/Mac
 ```bash
-# Set your token
+# Set your token and username
 export GH_TOKEN=your_token_here
+export GITHUB_OWNER=your_username_here
 
 # Install dependencies
 pip install -r requirements.txt
@@ -170,7 +172,7 @@ python generate_webp.py
 
 ### "User not found" error
 
-- Verify the `USERNAME` in `generate_webp.py` is spelled correctly
+- Verify your GitHub username is correct.
 - The username is case-sensitive
 
 ---
