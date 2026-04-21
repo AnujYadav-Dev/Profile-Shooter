@@ -54,8 +54,8 @@ jobs:
           
           # Configure git
           cd profile-repo
-          git config user.email "${{ github.actor }}@users.noreply.github.com"
-          git config user.name "${{ github.actor }}"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
           
           # Commit and push (only if the WebP has changed)
           git add game.webp
